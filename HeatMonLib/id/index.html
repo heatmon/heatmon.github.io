@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="id" lang="id">
+<head>
+  <title>HeatMonLib - Perpustakaan Profesional Pemantau Tegangan & Suhu CPU</title>
+  <link href="../../global.css" rel="stylesheet" type="text/css" />
+  <link href="../../home.css" rel="stylesheet" type="text/css" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Dokumentasi HeatMonLib - Perpustakaan .NET berbayar profesional untuk pemantauan tegangan dan suhu CPU dengan analisis per-core, opsi ekspor, dan laporan yang dapat disesuaikan.">
+  <meta name="keywords" content="HeatMonLib dokumentasi, perpustakaan pemantauan CPU, library CPU komersial, monitor tegangan, monitor suhu, C# library">
+  <meta name="author" content="Ari Project">
+  <meta name="robots" content="index, follow">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- Open Graph for Social Sharing -->
+  <meta property="og:title" content="Dokumentasi HeatMonLib" />
+  <meta property="og:description" content="Panduan lengkap HeatMonLib: library profesional untuk pemantauan tegangan dan suhu CPU di aplikasi .NET." />
+  <meta property="og:image" content="Capture.PNG" />
+  <meta property="og:type" content="article" />
+</head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZCT3CPV3MZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZCT3CPV3MZ');
+</script>
+<body>
+<div id="container">
+  <div id="header">
+    <div id="logo">
+      <h1><a href="../../id/">HeatMonLib</a></h1>
+    </div>
+    <div id="mainMenu">
+      <ul id="menuBar">
+         <li class="Language"><a href="../">English</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="mainArea">
+    <div id="contents">
+      <div class="contentBlock">
+        <h1>Dokumentasi HeatMonLib</h1>
+
+        <h3>Pendahuluan</h3>
+        <p>HeatMonLib adalah perpustakaan .NET profesional berbayar untuk memantau tegangan dan suhu CPU pada sistem Windows. Library ini menyediakan pengambilan data per-core, perkiraan tegangan, suhu, dan jumlah core untuk integrasi ke dalam aplikasi. Library ini cocok untuk penggunaan komersial dengan aktivasi lisensi.</p>
+
+        <h3>Persyaratan Sistem</h3>
+        <ul>
+          <li>Sistem Operasi: Windows Vista / 7 / 8 / 10 / 11</li>
+          <li>.NET Framework 2.0 atau lebih baru</li>
+          <li>CPU dengan dukungan pemantauan per-core</li>
+        </ul>
+
+        <h3>Memulai</h3>
+        <ol>
+          <li>Tambahkan referensi ke <b>HeatMonLib.dll</b> di proyek C# Anda</li>
+          <li>Impor namespace: <code>using HeatMonLib;</code></li>
+          <li>Inisialisasi library dengan lisensi yang telah dibeli:</li>
+          <pre><code>string userName = "JohnDoe";
+string serialKey = "A1B2C3D4E5F6G7H8I9J0"; // Diberikan setelah pembelian
+HeatMonLib lib = new HeatMonLib(userName, serialKey);</code></pre>
+          <li>Jika lisensi tidak valid, akan muncul <code>UnauthorizedAccessException</code></li>
+          <li>Gunakan API yang tersedia untuk mengambil informasi CPU</li>
+        </ol>
+
+        <h3>Fitur Utama</h3>
+        <ul>
+          <li>Pemantauan clock CPU per-core (MHz)</li>
+          <li>Pemantauan tegangan CPU perkiraan (V / mV)</li>
+          <li>Pemantauan suhu CPU per-core (°C)</li>
+          <li>Mendapatkan jumlah total core CPU</li>
+          <li>Ringan dan mudah diintegrasikan dalam aplikasi .NET</li>
+          <li>Mendukung lisensi komersial</li>
+        </ul>
+
+        <h3>Referensi API</h3>
+        <ul>
+          <li><b>UpdateAll()</b> - Memperbarui semua data pemantauan CPU</li>
+          <li><b>GetCpuName()</b> - Mengembalikan nama model CPU</li>
+          <li><b>GetCpuClocks()</b> - Mengembalikan kecepatan clock per-core dalam MHz</li>
+          <li><b>GetCpuVoltages()</b> - Mengembalikan tegangan perkiraan per-core dalam Volt</li>
+          <li><b>GetCpuVoltages_mV()</b> - Mengembalikan tegangan perkiraan per-core dalam millivolt</li>
+          <li><b>GetCpuTemps()</b> - Mengembalikan suhu per-core dalam Celsius</li>
+          <li><b>GetCpuCoreCount()</b> - Mengembalikan jumlah total core CPU</li>
+          <li><b>Close()</b> - Melepaskan resource library</li>
+        </ul>
+
+        <h3>Contoh Penggunaan</h3>
+        <pre><code>using System;
+using System.Collections.Generic;
+using HeatMonLib;
+
+class Program
+{
+    static void Main()
+    {
+        string userName = "JohnDoe";
+        string serialKey = "A1B2C3D4E5F6G7H8I9J0";
+
+        try
+        {
+            HeatMonLib lib = new HeatMonLib(userName, serialKey);
+
+            Console.WriteLine("CPU: " + lib.GetCpuName());
+            Console.WriteLine("Core: " + lib.GetCpuCoreCount());
+
+            List&lt;float&gt; clocks = lib.GetCpuClocks();
+            List&lt;double&gt; volts = lib.GetCpuVoltages();
+            List&lt;float&gt; temps = lib.GetCpuTemps();
+
+            for (int i = 0; i &lt; clocks.Count; i++)
+            {
+                Console.WriteLine($"Core {i}: {clocks[i]} MHz | {volts[i]:F2} V | {temps[i]} °C");
+            }
+
+            lib.Close();
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            Console.WriteLine("Kesalahan lisensi: " + ex.Message);
+        }
+    }
+}</code></pre>
+
+        <h3>Lisensi dan Registrasi</h3>
+        <p>HeatMonLib adalah library berbayar untuk penggunaan komersial. Secara default, library ini tidak dapat digunakan tanpa lisensi yang valid.</p>
+        <ul>
+          <li><b>Penggunaan Pribadi:</b> Hanya untuk percobaan atau pengembangan</li>
+          <li><b>Penggunaan Komersial:</b> Memerlukan registrasi dengan serial key yang valid</li>
+        </ul>
+        <p><b>Langkah-langkah Registrasi:</b></p>
+        <ol>
+          <li>Beli lisensi komersial melalui: <a href="https://www.paypal.com/ncp/payment/JZ7V4ELN6QZ7W">PayPal</a></li>
+          <li>Terima serial key Anda</li>
+          <li>Inisialisasi library dengan nama dan serial key Anda</li>
+          <li>Jika validasi berhasil, library terbuka sepenuhnya untuk penggunaan komersial</li>
+        </ol>
+        <p><i>Format Contoh Serial Key: XXX-XXX-XXX-XXX</i></p>
+
+        <h3>Pemecahan Masalah</h3>
+        <ul>
+          <li><b>Tidak ada data CPU?</b> - Pastikan CPU mendukung pemantauan per-core</li>
+          <li><b>Library melempar exception?</b> - Periksa kembali serial key yang dimasukkan</li>
+          <li><b>Program tiba-tiba berhenti?</b> - Jalankan aplikasi dengan hak administrator</li>
+        </ul>
+
+        <h3>Pembelian & Kontak</h3>
+        <p>Untuk membeli lisensi komersial atau dukungan teknis, hubungi: <a href="mailto:users.ariproject@gmail.com">users.ariproject@gmail.com</a></p>
+      </div>
+    </div>
+
+    <div id="subMenu">
+      <div class="menuBlock">
+        <h3>Beli HeatMonLib</h3>
+        <p><a href="https://www.paypal.com/ncp/payment/JZ7V4ELN6QZ7W">Lisensi HeatMonLib</a></p>
+		<p><a href="../../HeatMonLib.7z">Unduh DLL</a></p>
+      </div>     
+    </div>
+  </div>
+
+  <div id="footer">
+   <div align="right"> Copyright (C) 2018-2025 <a href="mailto:users.ariproject@gmail.com">Ari Project</a>. All rights reserved.</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>HeatMonLib - Professional CPU Voltage & Temperature Library</title>
+  <link href="../global.css" rel="stylesheet" type="text/css" />
+  <link href="../home.css" rel="stylesheet" type="text/css" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <!-- SEO Meta -->
+  <meta name="description" content="HeatMonLib Documentation - Professional, paid library for CPU voltage and temperature monitoring with per-core analysis, export options, and customizable reporting.">
+  <meta name="keywords" content="HeatMonLib documentation, CPU monitoring library, commercial CPU library, voltage monitor, temperature monitor, C# library">
+  <meta name="author" content="Ari Project">
+  <meta name="robots" content="index, follow">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+  <!-- Open Graph for Social Sharing -->
+  <meta property="og:title" content="HeatMonLib Documentation" />
+  <meta property="og:description" content="Step-by-step guide for HeatMonLib: professional CPU voltage and temperature monitoring library for .NET applications." />
+  <meta property="og:image" content="Capture.PNG" />
+  <meta property="og:type" content="article" />
+</head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZCT3CPV3MZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZCT3CPV3MZ');
+</script>
+<body>
+<div id="container">
+  <div id="header">
+    <div id="logo">
+      <h1><a href="../../">HeatMonLib</a></h1>
+    </div>
+    <div id="mainMenu">
+      <ul id="menuBar">
+         <li class="Language"><a href="id/">Indonesian</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="mainArea">
+    <div id="contents">
+      <div class="contentBlock">
+        <h1>HeatMonLib Documentation</h1>
+
+        <h3>Introduction</h3>
+        <p>HeatMonLib is a professional, paid .NET library for monitoring CPU voltage and temperature on Windows systems. It provides developers with per-core data retrieval, estimated voltages, temperatures, and core count information for integration into applications. This library is suitable for commercial usage with license activation.</p>
+
+        <h3>System Requirements</h3>
+        <ul>
+          <li>Operating System: Windows Vista / 7 / 8 / 10 / 11</li>
+          <li>.NET Framework 2.0 or later</li>
+          <li>CPU with per-core monitoring support</li>
+        </ul>
+
+        <h3>Getting Started</h3>
+        <ol>
+          <li>Add a reference to <b>HeatMonLib.dll</b> in your C# project</li>
+          <li>Import the namespace: <code>using HeatMonLib;</code></li>
+          <li>Initialize the library with your purchased license:</li>
+          <pre><code>string userName = "JohnDoe";
+string serialKey = "A1B2C3D4E5F6G7H8I9J0"; // Provided after purchase
+HeatMonLib lib = new HeatMonLib(userName, serialKey);</code></pre>
+          <li>If the license is invalid, an <code>UnauthorizedAccessException</code> is thrown</li>
+          <li>Use the available APIs to retrieve CPU information</li>
+        </ol>
+
+        <h3>Key Features</h3>
+        <ul>
+          <li>Per-core CPU clock monitoring (MHz)</li>
+          <li>Estimated CPU voltage monitoring (V / mV)</li>
+          <li>Per-core temperature monitoring (°C)</li>
+          <li>Retrieve total number of CPU cores</li>
+          <li>Lightweight and easy integration in .NET applications</li>
+          <li>Commercial license support</li>
+        </ul>
+
+        <h3>API Reference</h3>
+        <ul>
+          <li><b>UpdateAll()</b> - Refreshes all CPU monitoring data</li>
+          <li><b>GetCpuName()</b> - Returns CPU model name</li>
+          <li><b>GetCpuClocks()</b> - Returns per-core clock speeds in MHz</li>
+          <li><b>GetCpuVoltages()</b> - Returns estimated per-core voltages in Volts</li>
+          <li><b>GetCpuVoltages_mV()</b> - Returns estimated per-core voltages in millivolts</li>
+          <li><b>GetCpuTemps()</b> - Returns per-core temperatures in Celsius</li>
+          <li><b>GetCpuCoreCount()</b> - Returns total number of CPU cores</li>
+          <li><b>Close()</b> - Releases library resources</li>
+        </ul>
+
+        <h3>Example Usage</h3>
+        <pre><code>using System;
+using System.Collections.Generic;
+using HeatMonLib;
+
+class Program
+{
+    static void Main()
+    {
+        string userName = "JohnDoe";
+        string serialKey = "A1B2C3D4E5F6G7H8I9J0";
+
+        try
+        {
+            HeatMonLib lib = new HeatMonLib(userName, serialKey);
+
+            Console.WriteLine("CPU: " + lib.GetCpuName());
+            Console.WriteLine("Cores: " + lib.GetCpuCoreCount());
+
+            List<float> clocks = lib.GetCpuClocks();
+            List<double> volts = lib.GetCpuVoltages();
+            List<float> temps = lib.GetCpuTemps();
+
+            for (int i = 0; i &lt; clocks.Count; i++)
+            {
+                Console.WriteLine($"Core {i}: {clocks[i]} MHz | {volts[i]:F2} V | {temps[i]} °C");
+            }
+
+            lib.Close();
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            Console.WriteLine("License error: " + ex.Message);
+        }
+    }
+}</code></pre>
+
+        <h3>License and Registration</h3>
+        <p>HeatMonLib is a commercial, paid library. By default, it does not function without a valid purchased license.</p>
+        <ul>
+          <li><b>Personal Use:</b> Trial or development only</li>
+          <li><b>Commercial Use:</b> Requires registration with a valid serial key</li>
+        </ul>
+        <p><b>Steps to Register:</b></p>
+        <ol>
+          <li>Purchase a commercial license via: <a href="https://www.paypal.com/ncp/payment/JZ7V4ELN6QZ7W">PayPal</a></li>
+          <li>Receive your license key</li>
+          <li>Initialize the library with your name and serial key</li>
+          <li>Upon successful validation, the library is fully unlocked for commercial usage</li>
+        </ol>
+        <p><i>Example Serial Key Format: XXX-XXX-XXX-XXX</i></p>
+
+        <h3>Troubleshooting</h3>
+        <ul>
+          <li><b>No CPU data?</b> - Ensure your CPU supports per-core monitoring</li>
+          <li><b>Library throws exception?</b> - Verify the serial key is correct</li>
+          <li><b>Unexpected termination?</b> - Run application with administrator privileges</li>
+        </ul>
+
+        <h3>Purchase & Contact</h3>
+        <p>To purchase a commercial license or for support, contact: <a href="mailto:users.ariproject@gmail.com">users.ariproject@gmail.com</a></p>
+      </div>
+    </div>
+
+    <div id="subMenu">
+      <div class="menuBlock">
+        <h3>Buy HeatMonLib</h3>
+        <p><a href="https://www.paypal.com/ncp/payment/JZ7V4ELN6QZ7W">HeatMonLib License</a></p>
+		 <p><a href="../HeatMonLib.7z">Download DLL</a></p>
+      </div>     
+    </div>
+  <div id="footer">
+   <div align="right"> Copyright (C) 2018-2025 <a href="mailto:users.ariproject@gmail.com">Ari Project</a>. All rights reserved.</div>
+  </div>
+</div>
+</body>
+</html>
