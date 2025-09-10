@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HeatMon Change Log - Version history and updates for the accurate CPU temperature monitoring software">
+  <meta name="keywords" content="HeatMon changelog, version history, software updates, CPU monitor updates, HeatMon releases">
+  <meta name="author" content="Ari Project">
+  <meta property="og:title" content="HeatMon - Change Log">
+  <meta property="og:description" content="Version history and updates for HeatMon CPU temperature monitoring software">
+  <meta property="og:image" content="logo.png">
+  <meta property="og:url" content="https://heatmon.github.io/heatmon-changelog.html">
+  <meta name="twitter:card" content="summary">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+  <title>Change Log - HeatMon</title>
+
+  <style>
+    /* === Classic Help Documentation Style === */
+    * {margin:0;padding:0;box-sizing:border-box;}
+
+    body {
+      font-family: Tahoma, Verdana, Arial, sans-serif;
+      background:#dcdcdc;
+      color:#000;
+      line-height:1.6;
+    }
+
+    header {
+      background:#003399;
+      color:#fff;
+      padding:8px 15px;
+      border-bottom:2px solid #ffcc00;
+      font-weight:bold;
+      font-size:14px;
+    }
+
+    .main-container {
+      display:flex;
+      max-width:1200px;
+      margin:20px auto;
+      border:1px solid #888;
+      background:#f5f5f5;
+      box-shadow:2px 2px 5px rgba(0,0,0,0.2);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      flex:0 0 250px;
+      background:#efefef;
+      border-right:1px solid #888;
+      padding:15px;
+      font-size:14px;
+    }
+    .sidebar .download-box {
+      margin-bottom:15px;
+    }
+    .sidebar .download-box a {
+      color:#0000ee;
+      text-decoration:underline;
+      font-weight:bold;
+    }
+    .sidebar .contact-info {
+      margin-bottom:15px;
+      font-size:13px;
+    }
+    .nav-menu {list-style:none;}
+    .nav-menu li {margin-bottom:6px;}
+    .nav-menu a {
+      color:#0000ee;
+      text-decoration:underline;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:13px;
+    }
+    .nav-menu a:hover {color:#ff0000;}
+
+    /* Content */
+    .content {
+      flex:1;
+      background:#fff;
+      padding:20px;
+      overflow-y:auto;
+    }
+    .content-header {
+      margin-bottom:15px;
+    }
+    .content h1 {
+      font-size:20px;
+      color:#003399;
+      border-bottom:1px solid #ccc;
+      margin-bottom:6px;
+      padding-bottom:4px;
+    }
+    .content h2 {
+      font-size:16px;
+      color:#003399;
+      margin:15px 0 8px 0;
+    }
+    .content p {margin-bottom:12px;text-align:justify;}
+    
+    /* Version list */
+    .version-list {
+      list-style:none;
+      padding-left:0;
+    }
+    .version-item {
+      margin-bottom:1.5rem;
+      padding-bottom:1rem;
+      border-bottom:1px solid #eee;
+    }
+    .version-item:last-child {
+      border-bottom:none;
+    }
+    .version-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:0.5rem;
+    }
+    .version-title {
+      font-size:16px;
+      color:#003399;
+      font-weight:bold;
+    }
+    .version-date {
+      font-size:12px;
+      color:#555;
+    }
+    .version-features {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 0;
+    }
+    .version-features li {
+      margin-bottom:0.3rem;
+    }
+    .initial-release {
+      font-style:italic;
+      font-size:13px;
+      color:#555;
+      margin-top:0.5rem;
+    }
+
+    /* Navigation buttons */
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #ccc;
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background-color: #e6e6e6;
+      border: 1px solid #999;
+      border-radius: 3px;
+      font-size: 13px;
+      color: #000;
+      text-decoration: none;
+    }
+
+    .nav-button:hover {
+      background-color: #d4d4d4;
+      text-decoration: underline;
+    }
+
+    footer {
+      background:#efefef;
+      color:#333;
+      text-align:center;
+      font-size:12px;
+      padding:8px;
+      border-top:1px solid #aaa;
+      margin-top:15px;
+    }
+  </style>
+</head>
+<script 
+  src="https://www.paypal.com/sdk/js?client-id=BAAgaT0wYic6HGqRA_z5p2K_rU5XGx-ui1fuxHm4Vp8o1eJ1LZgVeWZETxC_DU6uTHS9kTfeZeubv2L5sY&components=hosted-buttons&disable-funding=venmo&currency=USD">
+</script>
+<body>
+  <header>
+    HeatMon Documentation - Change Log
+  </header>
+
+  <main class="main-container">
+    <aside class="sidebar">
+    <div id="paypal-container-EF8B7GMKPTA5C"></div>
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "EF8B7GMKPTA5C",
+  }).render("#paypal-container-EF8B7GMKPTA5C")
+</script>
+      </div>
+      <div class="contact-info">
+        <a href="mailto:users.ariproject@gmail.com">users.ariproject@gmail.com</a>
+      </div>
+       <ul class="nav-menu">
+        <li><a href="../"><img src="../cicon9.gif" alt="" width="16" height="16"> Overview</a></li>
+        <li><a href="../Main%20Window/"><img src="../cicon9.gif" alt="" width="16" height="16"> Understanding the Main Window</a></li>
+        <li><a href="../Change%20Log/"><img src="../cicon9.gif" alt="" width="16" height="16"> Change Log</a></li>
+        <li><a href="../Features/"><img src="../cicon9.gif" alt="" width="16" height="16"> Main Features</a></li>
+        <li><a href="../Graph/"><img src="../cicon9.gif" alt="" width="16" height="16">Graph</a></li>
+        <li><a href="../License/"><img src="../cicon9.gif" alt="" width="16" height="16">License</a></li>
+      </ul>
+    </aside>
+
+    <section class="content">
+      <div class="content-header">
+        <h1>Change Log</h1>
+        <p>Version history and updates for HeatMon</p>
+      </div>
+      
+      <ul class="version-list">
+        <li class="version-item">
+          <div class="version-header">
+            <h2 class="version-title">HeatMon 1.4</h2>
+            <span class="version-date">09/09/2025</span>
+          </div>
+          <ul class="version-features">
+            <li>Completely redesigned the interface to be lighter and compatible with older systems.</li>
+            <li>Repairing unreadable sensors on AMD Athlon Silver 3050u.</li>
+          </ul>
+        </li>
+
+        <li class="version-item">
+          <div class="version-header">
+            <h2 class="version-title">HeatMon 1.3</h2>
+            <span class="version-date">10/12/2020</span>
+          </div>
+          <ul class="version-features">
+            <li>Fixing bugs that often appear after updating Windows 10.</li>
+            <li>Added a cooling system indicator feature that was previously based on FAN RPM.</li>
+            <li>Adding a method for parsing temperature from WMI if the sensor does not find the temperature on the CPU core.</li>
+          </ul>
+        </li>
+
+        <li class="version-item">
+          <div class="version-header">
+            <h2 class="version-title">HeatMon 1.2</h2>
+            <span class="version-date">18/02/2019</span>
+          </div>
+          <ul class="version-features">
+            <li>Changing the temperature arrangement to be more compact and organized than a vertical list.</li>
+          </ul>
+        </li>
+
+        <li class="version-item">
+          <div class="version-header">
+            <h2 class="version-title">HeatMon 1.1</h2>
+            <span class="version-date">12/08/2018</span>
+          </div>
+          <ul class="version-features">
+            <li>Phase 2 development trial stage</li>
+          </ul>
+        </li>
+
+        <li class="version-item">
+          <div class="version-header">
+            <h2 class="version-title">HeatMon 1.0</h2>
+            <span class="version-date">30/05/2018</span>
+          </div>
+          <p class="initial-release">Initial Release</p>
+        </li>
+      </ul>
+
+      <div class="nav-buttons">
+        <a href="../Main%20Window/" class="nav-button">← Back to Main Window</a>
+        <a href="../Features/" class="nav-button">Continue to Main Features →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Copyright (c) 2018 - 2025 Ari Project. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

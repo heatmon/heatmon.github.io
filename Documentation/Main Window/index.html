@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Understanding the HeatMon main window - Learn about the control center for CPU temperature monitoring with detailed sections explained">
+  <meta name="keywords" content="HeatMon main window, CPU temperature monitoring, thermal status dashboard, CPU core temperature, temperature graph">
+  <meta name="author" content="Ari Project">
+  <meta property="og:title" content="HeatMon - Understanding the Main Window">
+  <meta property="og:description" content="Learn about the control center for CPU temperature monitoring with detailed sections explained">
+  <meta property="og:image" content="logo.png">
+  <meta property="og:url" content="https://heatmon.github.io/heatmon-mainwindow.html">
+  <meta name="twitter:card" content="summary">
+
+  <!-- Favicon -->
+ <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+  <title>Understanding the Main Window - HeatMon</title>
+
+  <style>
+    /* === Classic Help Documentation Style === */
+    * {margin:0;padding:0;box-sizing:border-box;}
+
+    body {
+      font-family: Tahoma, Verdana, Arial, sans-serif;
+      background:#dcdcdc;
+      color:#000;
+      line-height:1.6;
+    }
+
+    header {
+      background:#003399;
+      color:#fff;
+      padding:8px 15px;
+      border-bottom:2px solid #ffcc00;
+      font-weight:bold;
+      font-size:14px;
+    }
+
+    .main-container {
+      display:flex;
+      max-width:1200px;
+      margin:20px auto;
+      border:1px solid #888;
+      background:#f5f5f5;
+      box-shadow:2px 2px 5px rgba(0,0,0,0.2);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      flex:0 0 250px;
+      background:#efefef;
+      border-right:1px solid #888;
+      padding:15px;
+      font-size:14px;
+    }
+    .sidebar .download-box {
+      margin-bottom:15px;
+    }
+    .sidebar .download-box a {
+      color:#0000ee;
+      text-decoration:underline;
+      font-weight:bold;
+    }
+    .sidebar .contact-info {
+      margin-bottom:15px;
+      font-size:13px;
+    }
+    .nav-menu {list-style:none;}
+    .nav-menu li {margin-bottom:6px;}
+    .nav-menu a {
+      color:#0000ee;
+      text-decoration:underline;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:13px;
+    }
+    .nav-menu a:hover {color:#ff0000;}
+
+    /* Content */
+    .content {
+      flex:1;
+      background:#fff;
+      padding:20px;
+      overflow-y:auto;
+    }
+    .content-header {
+      margin-bottom:15px;
+    }
+    .content h1 {
+      font-size:20px;
+      color:#003399;
+      border-bottom:1px solid #ccc;
+      margin-bottom:6px;
+      padding-bottom:4px;
+    }
+    .content h2 {
+      font-size:16px;
+      color:#003399;
+      margin:15px 0 8px 0;
+    }
+    .content p {margin-bottom:12px;text-align:justify;}
+    
+    /* Image + caption */
+    .content-img {
+      max-width:100%;
+      height:auto;
+      border:1px solid #888;
+      margin:1rem 0;
+      box-shadow:1px 1px 3px rgba(0,0,0,0.2);
+    }
+    .img-caption {
+      text-align:center;
+      font-style:italic;
+      color:#555;
+      margin-bottom:1.5rem;
+      font-size:13px;
+    }
+
+    /* Feature sections */
+    .feature-section {
+      margin-bottom:2rem;
+      padding-bottom:1.5rem;
+      border-bottom:1px solid #ccc;
+    }
+    .feature-section:last-of-type {
+      border-bottom:none;
+      margin-bottom:1rem;
+    }
+    
+    .feature-list {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .feature-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Navigation buttons */
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #ccc;
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background-color: #e6e6e6;
+      border: 1px solid #999;
+      border-radius: 3px;
+      font-size: 13px;
+      color: #000;
+      text-decoration: none;
+    }
+
+    .nav-button:hover {
+      background-color: #d4d4d4;
+      text-decoration: underline;
+    }
+
+    footer {
+      background:#efefef;
+      color:#333;
+      text-align:center;
+      font-size:12px;
+      padding:8px;
+      border-top:1px solid #aaa;
+      margin-top:15px;
+    }
+  </style>
+</head>
+<script 
+  src="https://www.paypal.com/sdk/js?client-id=BAAgaT0wYic6HGqRA_z5p2K_rU5XGx-ui1fuxHm4Vp8o1eJ1LZgVeWZETxC_DU6uTHS9kTfeZeubv2L5sY&components=hosted-buttons&disable-funding=venmo&currency=USD">
+</script>
+<body>
+  <header>
+    HeatMon Documentation - Understanding the Main Window
+  </header>
+
+  <main class="main-container">
+    <aside class="sidebar">
+      <div class="download-box">
+       <div id="paypal-container-EF8B7GMKPTA5C"></div>
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "EF8B7GMKPTA5C",
+  }).render("#paypal-container-EF8B7GMKPTA5C")
+</script>
+      </div>
+      </div>
+      <div class="contact-info">
+        <a href="mailto:users.ariproject@gmail.com">users.ariproject@gmail.com</a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="../"><img src="../cicon9.gif" alt="" width="16" height="16"> Overview</a></li>
+        <li><a href="../Main%20Window/"><img src="../cicon9.gif" alt="" width="16" height="16"> Understanding the Main Window</a></li>
+        <li><a href="../Change%20Log/"><img src="../cicon9.gif" alt="" width="16" height="16"> Change Log</a></li>
+        <li><a href="../Features/"><img src="../cicon9.gif" alt="" width="16" height="16"> Main Features</a></li>
+        <li><a href="../Graph/"><img src="../cicon9.gif" alt="" width="16" height="16">Graph</a></li>
+        <li><a href="../License/"><img src="../cicon9.gif" alt="" width="16" height="16">License</a></li>
+      </ul>
+    </aside>
+
+    <section class="content">
+      <div class="content-header">
+        <h1>Understanding the Main Window</h1>
+        <p>Your control center for CPU temperature monitoring</p>
+      </div>
+
+      <div class="content-body">
+        <p>The main window of <strong>HeatMon</strong> is your control center. It is designed to provide a clear and quick overview of your CPU's thermal status. The dashboard is divided into several main sections:</p>
+
+        <img src="../HeatMonMain.PNG" alt="HeatMon Main Window" class="content-img">
+        <p class="img-caption">HeatMon Main Window Interface</p>
+
+        <div class="feature-section">
+          <h2>First Section</h2>
+          <img src="../MainMenu1.PNG" alt="HeatMon First Section" class="content-img">
+          <ul class="feature-list">
+            <li><strong>Display Temperature <a href="../Graph/">Graph</a> &gt;&gt;</strong> : displays advanced data visualization features (graphs) that plot the temperature of each core over time.</li>
+            <li><strong>Heat/Cooling</strong> : Percentage indicators (red) for heat and cooling (blue), which represent the ratio of cooling system usage to heat usage.</li>
+          </ul>
+        </div>
+
+        <div class="feature-section">
+          <h2>Second Section</h2>
+          <img src="../MainMenu2.PNG" alt="HeatMon Second Section" class="content-img">
+          <ul class="feature-list">
+            <li><strong>CPU Name</strong> : Information about the CPU name used.</li>
+            <li><strong>CPU Clock</strong> : Real-time CPU clock speed (MHz)</li>
+            <li><strong>Core #</strong> : Identifying the number of CPU cores</li>
+            <li><strong>Vendor</strong> : Names of CPU manufacturers such as (Intel/AMD).</li>
+            <li><strong>Socket</strong> : The type of socket used by the CPU.</li>
+          </ul>
+        </div>
+
+        <div class="feature-section">
+          <h2>Third Section</h2>
+          <img src="../MainMenu3.PNG" alt="HeatMon Third Section" class="content-img">
+          <ul class="feature-list">
+            <li><strong>CPU Core #</strong> : The number of CPU cores that can read the temperature sensor.</li>
+            <li><strong>Current</strong> : The current temperature value for each core.</li>
+            <li><strong>Min</strong> : Minimum temperature (safe value).</li>
+            <li><strong>Max</strong> : Maximum temperature (safe value).</li>
+            <li><strong>Indicator</strong> : Up-and-down indicator with progress bar (more user-friendly).</li>
+          </ul>
+        </div>
+
+        <div class="feature-section">
+          <h2>Fourth Section</h2>
+          <img src="../MainMenu4.png" alt="HeatMon Fourth Section" class="content-img">
+          <ul class="feature-list">
+            <li><strong>Help ?</strong> : Displaying <strong>HeatMon</strong> information and this help page.</li>
+            <li><strong>Display System Info</strong> : Display basic system information (BIOS, motherboard, and OS).</li>
+          </ul>
+        </div>
+
+        <div class="nav-buttons">
+          <a href="../" class="nav-button">← Back to Overview</a>
+          <a href="../Change%20Log/" class="nav-button">Continue to Change Log →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Copyright (c) 2018 - 2025 Ari Project. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HeatMon Graph Feature - Advanced visualization tool for analyzing CPU temperature trends with real-time graphical representations">
+  <meta name="keywords" content="HeatMon graph, CPU temperature graph, thermal visualization, temperature trends, CPU monitoring graphics">
+  <meta name="author" content="Ari Project">
+  <meta property="og:title" content="HeatMon Graph - CPU Temperature Visualization">
+  <meta property="og:description" content="Advanced visualization tool for analyzing CPU temperature trends">
+  <meta property="og:image" content="logo.png">
+  <meta property="og:url" content="https://heatmon.github.io/heatmon-graph.html">
+  <meta name="twitter:card" content="summary">
+
+  <!-- Favicon -->
+ <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+  <title>Graph - HeatMon</title>
+
+  <style>
+    /* === Classic Help Documentation Style === */
+    * {margin:0;padding:0;box-sizing:border-box;}
+
+    body {
+      font-family: Tahoma, Verdana, Arial, sans-serif;
+      background:#dcdcdc;
+      color:#000;
+      line-height:1.6;
+    }
+
+    header {
+      background:#003399;
+      color:#fff;
+      padding:8px 15px;
+      border-bottom:2px solid #ffcc00;
+      font-weight:bold;
+      font-size:14px;
+    }
+
+    .main-container {
+      display:flex;
+      max-width:1200px;
+      margin:20px auto;
+      border:1px solid #888;
+      background:#f5f5f5;
+      box-shadow:2px 2px 5px rgba(0,0,0,0.2);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      flex:0 0 250px;
+      background:#efefef;
+      border-right:1px solid #888;
+      padding:15px;
+      font-size:14px;
+    }
+    .sidebar .download-box {
+      margin-bottom:15px;
+    }
+    .sidebar .download-box a {
+      color:#0000ee;
+      text-decoration:underline;
+      font-weight:bold;
+    }
+    .sidebar .contact-info {
+      margin-bottom:15px;
+      font-size:13px;
+    }
+    .nav-menu {list-style:none;}
+    .nav-menu li {margin-bottom:6px;}
+    .nav-menu a {
+      color:#0000ee;
+      text-decoration:underline;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:13px;
+    }
+    .nav-menu a:hover {color:#ff0000;}
+
+    /* Content */
+    .content {
+      flex:1;
+      background:#fff;
+      padding:20px;
+      overflow-y:auto;
+    }
+    .content-header {
+      display:flex;
+      align-items:center;
+      gap:15px;
+      margin-bottom:15px;
+    }
+    .content h1 {
+      font-size:20px;
+      color:#003399;
+      border-bottom:1px solid #ccc;
+      margin-bottom:6px;
+      padding-bottom:4px;
+    }
+    .content h2 {
+      font-size:16px;
+      color:#003399;
+      margin:15px 0 8px 0;
+    }
+    .content p {margin-bottom:12px;text-align:justify;}
+    .nav-menu {list-style:none;}
+    .nav-menu li {margin-bottom:6px;}
+    .nav-menu a {
+      color:#0000ee;
+      text-decoration:underline;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:13px;
+    }
+    .nav-menu a:hover {color:#ff0000;}
+    /* Graph-specific styles */
+    .content-img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin: 1rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .img-caption {
+      text-align: center;
+      font-style: italic;
+      color: #555;
+      margin-bottom: 1.5rem;
+      font-size: 13px;
+    }
+
+    .feature-section {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .feature-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .feature-list {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .feature-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    .sub-feature-list {
+      list-style-type: circle;
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .sub-feature-list li {
+      margin-bottom: 0.3rem;
+    }
+
+    .scenario-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .scenario-list > li {
+      margin-bottom: 1.2rem;
+    }
+
+    .scenario-list ol {
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .scenario-list ol li {
+      margin-bottom: 0.4rem;
+    }
+
+    .conclusion-box {
+      background-color: #f9f9f9;
+      border-left: 4px solid #003399;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-radius: 4px;
+    }
+
+    .conclusion-box h2 {
+      margin-top: 0;
+      font-size: 16px;
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background-color: #e6e6e6;
+      border: 1px solid #999;
+      border-radius: 3px;
+      font-size: 13px;
+      color: #000;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+
+    .nav-button:hover {
+      background-color: #d4d4d4;
+      text-decoration: underline;
+    }
+
+    footer {
+      background:#efefef;
+      color:#333;
+      text-align:center;
+      font-size:12px;
+      padding:8px;
+      border-top:1px solid #aaa;
+      margin-top:15px;
+    }
+  </style>
+</head>
+<script 
+  src="https://www.paypal.com/sdk/js?client-id=BAAgaT0wYic6HGqRA_z5p2K_rU5XGx-ui1fuxHm4Vp8o1eJ1LZgVeWZETxC_DU6uTHS9kTfeZeubv2L5sY&components=hosted-buttons&disable-funding=venmo&currency=USD">
+</script>
+<body>
+  <header>
+    HeatMon Documentation - Graph Feature
+  </header>
+
+  <main class="main-container">
+    <aside class="sidebar">
+      <div class="download-box">
+       <div id="paypal-container-EF8B7GMKPTA5C"></div>
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "EF8B7GMKPTA5C",
+  }).render("#paypal-container-EF8B7GMKPTA5C")
+</script>
+      </div>
+      </div>
+
+      <div class="contact-info">
+        <a href="mailto:users.ariproject@gmail.com">
+          users.ariproject@gmail.com
+        </a>
+      </div>
+
+     <ul class="nav-menu">
+        <li><a href="../"><img src="../cicon9.gif" alt="" width="16" height="16"> Overview</a></li>
+        <li><a href="../Main%20Window/"><img src="../cicon9.gif" alt="" width="16" height="16"> Understanding the Main Window</a></li>
+        <li><a href="../Change%20Log/"><img src="../cicon9.gif" alt="" width="16" height="16"> Change Log</a></li>
+        <li><a href="../Features/"><img src="../cicon9.gif" alt="" width="16" height="16"> Main Features</a></li>
+        <li><a href="../Graph/"><img src="../cicon9.gif" alt="" width="16" height="16">Graph</a></li>
+        <li><a href="../License/"><img src="../cicon9.gif" alt="" width="16" height="16">License</a></li>
+      </ul>
+    </aside>
+
+    <section class="content">
+      <div class="content-header">
+        <h1>Graph</h1>
+      </div>
+
+      <div class="content-body">
+        <p>Advanced visualization for CPU temperature analysis</p>
+        
+        <img src="../HeatMonGraph.PNG" alt="HeatMon Graph Feature" class="content-img">
+        <p class="img-caption">HeatMon Graph Visualization Interface</p>
+
+        <p>The Graph feature in <strong>HeatMon</strong> is an advanced visualization tool that converts numerical temperature data into easy-to-understand graphical representations. This allows you to analyze your CPU's thermal behavior in a more in-depth and professional manner.</p>
+
+        <div class="feature-section">
+          <h2>1. Basic Concept: What Does the Graph Show?</h2>
+          <ul class="feature-list">
+            <li><strong>Y-axis (Vertical)</strong>: Shows the temperature in degrees Celsius (°C). This scale automatically adjusts based on the highest and lowest temperatures of all monitored cores, providing a 5% margin for optimal visibility.</li>
+            <li><strong>X-axis (Horizontal)</strong>: Shows the time in minutes. The graph displays the last 5 minutes of data, with the axis moving from right to left (reversed), simulating the rolling graph or strip chart display commonly found in industrial equipment. The rightmost point is the most recent data.</li>
+            <li><strong>Lines</strong>: Each colored line represents the temperature of one CPU core over time. You can select any core you want to display.</li>
+          </ul>
+        </div>
+
+        <div class="feature-section">
+          <h2>2. Advanced Features in the Graphics Window</h2>
+          <p>The graph window is equipped with a context menu (right-click) that provides full control:</p>
+          <ul class="feature-list">
+            <li><strong>Save as Image:</strong>
+              <ul class="sub-feature-list">
+                <li><strong>Function</strong>: Exports the currently displayed graph to an image file.</li>
+                <li><strong>How to</strong>: Right-click on the graph → Select "Save as Image". Select the desired format (PNG, JPG, BMP) and storage location.</li>
+                <li><strong>Professional Use</strong>: Very useful for documentation, presentations, or reporting bugs to the support team. You can include images as visual evidence of overheating issues.</li>
+              </ul>
+            </li>
+            <li><strong>Print:</strong>
+              <ul class="sub-feature-list">
+                <li><strong>Function</strong>: Prints the graph directly to a connected printer.</li>
+                <li><strong>How to</strong>: Right-click on the graph → Select "Print".</li>
+                <li><strong>Professional Use</strong>: Obtains a physical copy for archiving or team discussions.</li>
+              </ul>
+            </li>
+            <li><strong>Change Theme:</strong>
+              <ul class="sub-feature-list">
+                <li><strong>Light Theme</strong> (Default): Bright and clean display, ideal for bright rooms or daylight conditions.</li>
+                <li><strong>Dark Theme</strong>: Dim, dark display that reduces glare and is easier on the eyes in low-light conditions. Suitable for long-term monitoring.</li>
+                <li><strong>Gradient Theme</strong>: An aesthetically pleasing display with a gradient background.</li>
+              </ul>
+            </li>
+            <li><strong>Legend:</strong>
+              <ul class="sub-feature-list">
+                <li>At the bottom of the graph is a legend that shows the colors and names for each core being plotted.</li>
+                <li>This legend is interactive. You can click on the core name in the legend to hide or show the core line again without having to open the main window. This is very useful for simplifying a crowded graph display.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="feature-section">
+          <h2>3. Professional Use Scenarios</h2>
+          <ul class="scenario-list">
+            <li><strong>Stress Testing & Benchmarking:</strong>
+              <ol>
+                <li>Run a CPU load application (such as <strong>Cinebench</strong>, <strong>Prime95</strong>).</li>
+                <li>Observe the HeatMon graph. You will see the lines rise sharply.</li>
+                <li>Analysis: Does the temperature stabilize at a certain point or continue to rise? Is there one core that is consistently hotter than the others (uneven cooling)?</li>
+              </ol>
+            </li>
+            <li><strong>Diagnosing Overheating:</strong>
+              <ol>
+                <li>If your computer suddenly slows down (thermal throttling), open HeatMon and look at the graph.</li>
+                <li>You can clearly see when and how quickly the temperature spikes into the red zone, helping you identify the triggering application.</li>
+              </ol>
+            </li>
+            <li><strong>Testing Cooler Effectiveness:</strong>
+              <ol>
+                <li>After running the stress test, stop the test.</li>
+                <li>Observe the graph to see how quickly the temperature lines drop. The slope of the decline line indicates how efficiently your CPU cooler is dissipating heat.</li>
+              </ol>
+            </li>
+            <li><strong>Workload Analysis:</strong>
+              <ol>
+                <li>Observe the graph while performing different tasks (gaming, browsing, video editing).</li>
+                <li>Each type of workload will produce a unique "fingerprint" or pattern of temperature increase on the graph.</li>
+              </ol>
+            </li>
+          </ul>
+        </div>
+
+        <div class="conclusion-box">
+          <h2>Conclusion</h2>
+          <p>The <strong>HeatMon</strong> Graph feature transforms the application from a simple monitor into an analytical tool. By providing time context to temperature data, this feature empowers you to not only view the current status but also understand trends, relationships, and historical performance of your CPU cooling system, which is crucial for maintaining the long-term health and performance of your computer.</p>
+        </div>
+ <div class="nav-buttons">
+  <a href="../Features/" class="nav-button">← Back to Main Features</a>
+  <a href="../License/" class="nav-button">Continue to License →</a>
+ </div>
+        
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Copyright (c) 2018 - 2025 Ari Project. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
