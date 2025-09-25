@@ -102,60 +102,16 @@
   </div>
 
  <script>
-  const searchEl = document.getElementById('search');
-  const sortEl = document.getElementById('sort');
-  const tbody = document.querySelector('#priceTable tbody');
-  const lastUpdated = document.getElementById('lastUpdated');
-
-  let products = [];
-
-  function renderTable(){
-    tbody.innerHTML = '';
-    const q = searchEl.value.trim().toLowerCase();
-    const activeCat = document.querySelector('.tab.active').dataset.cat;
-
-    let filtered = products.filter(p=>{
-      const matchCat = (activeCat==='all')||(p.kategori.toLowerCase()===activeCat);
-      const matchSearch = q==='' || p.nama.toLowerCase().includes(q) || p.spesifikasi.toLowerCase().includes(q);
-      return matchCat && matchSearch;
-    });
-
-    filtered.sort((a,b)=>{
-      if(sortEl.value==='asc') return a.harga - b.harga;
-      else return b.harga - a.harga;
-    });
-
-    filtered.forEach(p=>{
-      const tr=document.createElement('tr');
-      tr.dataset.cat=p.kategori.toLowerCase();
-      tr.innerHTML=`
-        <td><div class="title">${p.nama}</div></td>
-        <td class="specs">${p.spesifikasi}</td>
-        <td>${p.garansi}</td>
-        <td class="price">Rp ${new Intl.NumberFormat('id-ID').format(p.harga)}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  }
-
-  // Tabs
-  document.querySelectorAll('.tab').forEach(tab=>{
-    tab.addEventListener('click',()=>{
-      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-      tab.classList.add('active');
-      renderTable();
-    });
-  });
-
-  searchEl.addEventListener('input',renderTable);
-  sortEl.addEventListener('change',renderTable);
-
   function parseCSV(text){
     const lines=text.trim().split(/\r?\n/);
-    const headers=lines[0].split(',').map(h=>h.trim().toLowerCase());
+
+    // deteksi pakai koma atau titik koma
+    const delimiter = lines[0].includes(';') ? ';' : ',';
+
+    const headers=lines[0].split(delimiter).map(h=>h.trim().toLowerCase());
     const data=[];
     for(let i=1;i<lines.length;i++){
-      const cols=lines[i].split(',');
+      const cols=lines[i].split(delimiter);
       const obj={};
       headers.forEach((h,j)=>obj[h]=cols[j]?cols[j].trim():'' );
       obj.harga=Number(obj.harga||0);
@@ -164,7 +120,7 @@
     return data;
   }
 
-  // fetch produk.csv dengan anti-cache trick
+  // fetch produk.csv dengan anti-cache
   fetch('produk.csv?nocache=' + Date.now())
     .then(res=>res.text())
     .then(text=>{
@@ -179,5 +135,7 @@
 </script>
 
 
+
 </body>
+
 </html>
