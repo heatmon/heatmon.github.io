@@ -1,0 +1,23 @@
+[
+  {
+    "nama": "PC Rakitan i3",
+    "spesifikasi": "Core i3-10100 / 8GB / 256GB SSD",
+    "garansi": "1 Tahun",
+    "harga": 4500000,
+    "kategori": "desktop"
+  },
+  {
+    "nama": "Laptop Asus A416",
+    "spesifikasi": "Intel i5 / 8GB / 512GB SSD",
+    "garansi": "2 Tahun",
+    "harga": 7200000,
+    "kategori": "laptop"
+  },
+  {
+    "nama": "Printer Epson L3210",
+    "spesifikasi": "Print/Scan/Copy",
+    "garansi": "1 Tahun",
+    "harga": 2200000,
+    "kategori": "printer"
+  }
+]
