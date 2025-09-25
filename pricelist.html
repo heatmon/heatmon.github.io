@@ -101,41 +101,25 @@
 
   </div>
 
- <script>
-  function parseCSV(text){
-    const lines=text.trim().split(/\r?\n/);
+<script>
+  let products = [];
 
-    // deteksi pakai koma atau titik koma
-    const delimiter = lines[0].includes(';') ? ';' : ',';
-
-    const headers=lines[0].split(delimiter).map(h=>h.trim().toLowerCase());
-    const data=[];
-    for(let i=1;i<lines.length;i++){
-      const cols=lines[i].split(delimiter);
-      const obj={};
-      headers.forEach((h,j)=>obj[h]=cols[j]?cols[j].trim():'' );
-      obj.harga=Number(obj.harga||0);
-      data.push(obj);
-    }
-    return data;
-  }
-
-  // fetch produk.csv dengan anti-cache
-  fetch('produk.csv?nocache=' + Date.now())
-    .then(res=>res.text())
-    .then(text=>{
-      products=parseCSV(text);
-      lastUpdated.textContent='Terakhir diperbarui: '+new Date().toLocaleString('id-ID');
+  fetch('produk.json?nocache=' + Date.now())
+    .then(res => {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    })
+    .then(data => {
+      products = data;
+      lastUpdated.textContent = 'Terakhir diperbarui: ' + new Date().toLocaleString('id-ID');
       renderTable();
     })
-    .catch(err=>{
-      console.error('Gagal memuat CSV:',err);
-      lastUpdated.textContent='Gagal memuat data produk';
+    .catch(err => {
+      console.error("Gagal memuat produk:", err);
+      lastUpdated.textContent = 'Gagal memuat data produk';
     });
 </script>
-
-
-
 </body>
 
 </html>
+
